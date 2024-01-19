@@ -81,16 +81,32 @@ public class Pokemon {
         return attaques;
     }
 
+    public void setPointsDeVie(int pointsDeVie) {
+        this.pointsDeVie = pointsDeVie;
+    }
+
     // Methode pour ajouter attaque
     public void ajouterAttaque(Attaque attaque) {
         attaques.add(attaque);
     }
 
     public void attaquer(Pokemon adversaire, Attaque attaque) {
-        // Implement the attack logic here
         // Use the Attaque calculerDegats method
+        int damage = attaque.calculerDegats(this, adversaire, this.getAttaque());
+
         // Adjust the opponent's HP accordingly
+        adversaire.setPointsDeVie(adversaire.getPointsDeVie() - damage);
+
+        System.out.println(this.getNom() + " attaque avec " + attaque.getNom() + " et inflige " + damage + " points de dégâts à " + adversaire.getNom());
+
+        // Check if the opponent is knocked out
+        if (adversaire.estKo()) {
+            System.out.println(adversaire.getNom() + " est K.O.!");
+        } else {
+            System.out.println(adversaire.getNom() + " a maintenant " + adversaire.getPointsDeVie() + " points de vie restants.");
+        }
     }
+
 
     public boolean estKo() {
         return pointsDeVie <= 0;
