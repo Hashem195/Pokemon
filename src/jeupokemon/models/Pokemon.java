@@ -81,10 +81,6 @@ public class Pokemon {
         return attaques;
     }
 
-    public void setPointsDeVie(int pointsDeVie) {
-        this.pointsDeVie = pointsDeVie;
-    }
-
     // Methode pour ajouter attaque
     public void ajouterAttaque(Attaque attaque) {
         attaques.add(attaque);
@@ -92,7 +88,7 @@ public class Pokemon {
 
     public void attaquer(Pokemon adversaire, Attaque attaque) {
         // Use the Attaque calculerDegats method
-        int damage = attaque.calculerDegats(this, adversaire, this.getAttaque());
+        int damage = attaque.calculerDegats(this, adversaire);
 
         // Adjust the opponent's HP accordingly
         adversaire.setPointsDeVie(adversaire.getPointsDeVie() - damage);
@@ -107,6 +103,9 @@ public class Pokemon {
         }
     }
 
+    public void setPointsDeVie(int pointsDeVie) {
+        this.pointsDeVie = pointsDeVie;
+    }
 
     public boolean estKo() {
         return pointsDeVie <= 0;
@@ -120,7 +119,6 @@ public class Pokemon {
     }
 
 
-
     public void afficher() {
         System.out.println("Nom : " + nom);
         System.out.println("Type(s) : " + type1 + (type2 != null ? ", " + type2 : ""));
@@ -128,5 +126,4 @@ public class Pokemon {
         System.out.println("Niveau : " + niveau);
 
     }
-
 }

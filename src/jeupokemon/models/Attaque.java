@@ -40,21 +40,18 @@ public class Attaque {
     public int getPp() {
         return pp;
     }
-    public int calculerDegats(Pokemon attaquant, Pokemon adversaire, int attaque) {
+    public int calculerDegats(Pokemon attaquant, Pokemon adversaire) {
         double stab = 1.0;
         if (attaquant.getType1().equals(type) || (attaquant.getType2() != null && attaquant.getType2().equals(type))) {
             stab = 1.5;
         }
 
-        double cm = ((2.0 * attaquant.getNiveau() / 5.0 + 2.0) * attaque * puissance) /
+        double cm = ((2.0 * attaquant.getNiveau() / 5.0 + 2.0) * attaquant.getAttaque() * puissance) /
                 (adversaire.getDefense() * 50.0) + 2.0;
-
 
         cm *= stab;
 
-
-        int damage = (int) (cm * (Math.random() * 0.15 + 0.85));
-
+        int damage = (int) (cm * precision);
 
         pp--;
         if (pp < 0) {
@@ -72,4 +69,7 @@ public class Attaque {
         System.out.println("Puissance : " + puissance);
         System.out.println("PP : " + pp);
     }
+
 }
+
+
