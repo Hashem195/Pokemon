@@ -38,7 +38,7 @@ public class Jeu {
 
         for (int round = 1; round <= 3; round++) {
             System.out.println("\nRound " + round + "!");
-            combatRound(joueur1, joueur2);
+            combatRound(joueur1, joueur2,round);
         }
         Joueur winner = determineGagnant(joueur1, joueur2);
 
@@ -46,9 +46,9 @@ public class Jeu {
 
     }
 
-    private void combatRound (Joueur joueur1, Joueur joueur2){
-        Pokemon pokemonJoueur1 = joueur1.recupererPokemon(1);
-        Pokemon pokemonJoueur2 = joueur2.recupererPokemon(1);
+    private void combatRound (Joueur joueur1, Joueur joueur2,int round){
+        Pokemon pokemonJoueur1 = joueur1.recupererPokemon(round);
+        Pokemon pokemonJoueur2 = joueur2.recupererPokemon(round);
 
         // Determine which Pokémon attacks first based on speed
         Pokemon premierAttaquant, secondAttaquant;
